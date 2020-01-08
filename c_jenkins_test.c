@@ -2,10 +2,10 @@
 #include<stdlib.h>
 int main()
 {
-    int i = 10;
+    int j = 0, i = 10;
     printf("Hello world\n");
     printf("thank you\n");
-    for(int j=0; j<=10; j++)
+    for(;j<=10;j++)
     {
 	printf("第%d次循环：\n",j);
     	while(i--)
