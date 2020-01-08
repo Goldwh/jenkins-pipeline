@@ -7,9 +7,8 @@ pipeline{
                 if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'dev') {
                     echo 'Code PULL'
                 } else {
-                    echo 'env.BRANCH_NAME'
+                    echo '${env.BRANCH_NAME}'
                     echo 'Current branch skip'
-		    echo 'xxx'
                 }
             }
         }
