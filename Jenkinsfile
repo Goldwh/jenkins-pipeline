@@ -2,62 +2,59 @@ pipeline{
     agent any
     stages{
         stage('Code PULL'){
-        when{
-            anyOf{
-                branch 'master';
-                branch 'dev'
-        }
-        }
         steps{
-            echo 'Code PULL'
+            if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'dev') {
+                echo 'Code PULL'
+            } else {
+                echo 'Current branch skip'
+            }
         }
     }
         stage('Code BUILD'){
-        when{
-            anyOf{
-                branch 'master';
-                branch 'dev'
-        }
-        }
         steps{
-            echo 'Code BUILD'
-        sh 'make clean && make'
+            if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'dev') {
+                echo 'Code BUILD'
+                sh 'make clean && make'
+            } else {
+                echo 'Current branch skip'
+            }
         }
     }
         stage('Unit TEST'){
-        when{
-            anyOf{
-                branch 'master';
-                branch 'dev'
-        }
-        }
         steps{
-            echo 'Unit TEST'
-        sh './c_jenkins_test'
+            if (env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'dev') {
+                echo 'Unit TEST'
+                sh './c_jenkins_test'
+            } else {
+                echo 'Current branch skip'
+            }
         }
     }
         stage('Package'){
-        when{
-                branch 'master'
-        }
         steps{
-            echo 'Package'
+            if (env.BRANCH_NAME == 'master') {
+                echo 'Package'
+            } else {
+                echo 'Current branch skip'
+            }
         }
     }
         stage('Deploy TEST ENV'){
-        when{
-                branch 'master'
-        }
         steps{
-            echo 'Deploy TEST ENV'
+            if (env.BRANCH_NAME == 'master') {
+                echo 'Deploy TEST ENV'
+            } else {
+                echo 'Current branch skip'
+            }
         }
     }
         stage('Auto API TEST'){
-        when{
-                branch 'master'
-        }
         steps{
-            echo 'Auto API TEST'
+            if (env.BRANCH_NAME == 'master') {
+                echo 'Auto API TEST'
+            } else {
+                echo 'Current branch skip'
+            }
         }
     }
     }
