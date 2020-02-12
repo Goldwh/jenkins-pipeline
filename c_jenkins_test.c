@@ -12,7 +12,6 @@ int main()
     	    {
 	        printf("**");	
 	        printf("i = %d\n",i);
-		printf("----");
 	    }
 	i = 10;
     }
